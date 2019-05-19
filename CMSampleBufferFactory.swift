@@ -117,7 +117,7 @@ extension CMSampleBuffer {
             guard let description: CMVideoFormatDescription = opDescription else {
                 return nil
             }
-            var sampleBufferOut: CMSampleBuffer?
+            var sampleBuffer: CMSampleBuffer?
             var sampleTiming = CMSampleTimingInfo()
             sampleTiming.presentationTimeStamp = CMTime(value: CMTimeValue(Int(Date().timeIntervalSince1970 * 30000.0)),
                                                         timescale: 30000,
@@ -130,9 +130,9 @@ extension CMSampleBuffer {
                                                         refcon: nil,
                                                         formatDescription: description,
                                                         sampleTiming: &sampleTiming,
-                                                        sampleBufferOut: &sampleBufferOut)
+                                                        sampleBufferOut: &sampleBuffer)
             CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-            return sampleBufferOut
+            return sampleBuffer
         }
     }
 }
